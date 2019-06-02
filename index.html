@@ -699,35 +699,46 @@
       </div>
     </div>
 
+    <!-- Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Le_vKYUAAAAAHppeOEvOC9LeUGYQM9xhvVlzcew"></script>
     <!-- Send Mail -->
     <script>
       function sendMail(){
-        var name = document.getElementById('name').value
-        var email = document.getElementById('email').value
-        var subject = document.getElementById('subject').value
-        var message = document.getElementById('message').value
 
-        var Http = new XMLHttpRequest();
-        var url = 'https://us-central1-skysyslk.cloudfunctions.net/sendMail';
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6Le_vKYUAAAAAHppeOEvOC9LeUGYQM9xhvVlzcew', {action: 'homepage'}).then(function(token) {
+            var name = document.getElementById('name').value
+            var email = document.getElementById('email').value
+            var subject = document.getElementById('subject').value
+            var message = document.getElementById('message').value
 
-        url = url+"?from="+email+"&message="+message+"&name="+name+"&subject="+subject
-        Http.open("GET",url)
-        Http.send();
+            var Http = new XMLHttpRequest();
+            var url = 'https://us-central1-skysyslk.cloudfunctions.net/sendMail';
 
-        Http.onreadystatechange=(e)=>{
-          if(Http.status==200){
-            alert('Message Sent Successfully')
-            return
-          }
-        }
+            url = url+"?from="+email+"&message="+message+"&name="+name+"&subject="+subject
+            Http.open("GET",url)
+            Http.send();
 
-        document.getElementById('name').value = ''
-        document.getElementById('email').value = ''
-        document.getElementById('subject').value = ''
-        document.getElementById('message').value = ''
+            Http.onreadystatechange=(e)=>{
+              if(Http.status==200){
+                alert('Message Sent Successfully')
+                return
+              }
+            }
+
+            document.getElementById('name').value = ''
+            document.getElementById('email').value = ''
+            document.getElementById('subject').value = ''
+            document.getElementById('message').value = ''
+          });
+        });
+        
       }
     </script>
 
+    <script>
+     
+    </script>
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <!-- jQuery Easing -->
