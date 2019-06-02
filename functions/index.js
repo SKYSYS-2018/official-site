@@ -8,7 +8,7 @@ let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'skysyslk1@gmail.com',
-        pass: 'sdaasdsadasdsasa'
+        pass: 'emoxqwhagtqkvwwx'
     }
 });
 
@@ -20,17 +20,20 @@ exports.sendMail = functions.https.onRequest((req,res) => {
     const name = req.query.name
     const subject = req.query.subject
 
+    res.header('Content-Type','application/json');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
 
     const mailOption = {
         from: 'skysyslk.github.io <skysyslk1@gmail.com>',
         to: dest,
-        cc: [
-            'danushkaherath96@gmail.com',
-            'ravindusachintha53@gmail.com',
-            'shehanhere@gmail.com',
-            'sacheerc@gmail.com',
-            'asithaindrajithk9@gmail.com'
-        ],
+        // cc: [
+        //     'danushkaherath96@gmail.com',
+        //     'ravindusachintha53@gmail.com',
+        //     'shehanhere@gmail.com',
+        //     'sacheerc@gmail.com',
+        //     'asithaindrajithk9@gmail.com'
+        // ],
         subject: subject,
         html: `<h2> You have recieved a new message </h2>
                 <p> <b>email:</b> ${emailFrom} </p>

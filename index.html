@@ -648,12 +648,13 @@
                     class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box"
                     data-animate-effect="fadeInLeft"
                   >
-                    <form action="">
+                    
                       <div class="form-group">
                         <input
                           type="text"
                           class="form-control"
                           placeholder="Name"
+                          id="name"
                         />
                       </div>
                       <div class="form-group">
@@ -661,6 +662,7 @@
                           type="text"
                           class="form-control"
                           placeholder="Email"
+                          id="email"
                         />
                       </div>
                       <div class="form-group">
@@ -668,11 +670,12 @@
                           type="text"
                           class="form-control"
                           placeholder="Subject"
+                          id="subject"
                         />
                       </div>
                       <div class="form-group">
                         <textarea
-                          name=""
+                          name="message"
                           id="message"
                           cols="30"
                           rows="7"
@@ -682,12 +685,11 @@
                       </div>
                       <div class="form-group">
                         <input
-                          type="submit"
                           class="btn btn-primary btn-send-message"
                           value="Send Message"
+                          onclick="sendMail()"
                         />
                       </div>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -696,6 +698,35 @@
         </div>
       </div>
     </div>
+
+    <!-- Send Mail -->
+    <script>
+      function sendMail(){
+        var name = document.getElementById('name').value
+        var email = document.getElementById('email').value
+        var subject = document.getElementById('subject').value
+        var message = document.getElementById('message').value
+
+        var Http = new XMLHttpRequest();
+        var url = 'https://us-central1-skysyslk.cloudfunctions.net/sendMail';
+
+        url = url+"?from="+email+"&message="+message+"&name="+name+"&subject="+subject
+        Http.open("GET",url)
+        Http.send();
+
+        Http.onreadystatechange=(e)=>{
+          if(Http.status==200){
+            alert('Message Sent Successfully')
+            return
+          }
+        }
+
+        document.getElementById('name').value = ''
+        document.getElementById('email').value = ''
+        document.getElementById('subject').value = ''
+        document.getElementById('message').value = ''
+      }
+    </script>
 
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
