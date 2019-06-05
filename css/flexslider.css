@@ -272,4 +272,8 @@ html[xmlns] .flexslider .slides {
     opacity: 1;
     right: 10px;
   }
+
+  .flex-control-nav {
+    height: 20%;
+  }
 }
