@@ -206,7 +206,7 @@
   };
 
   var slowScrollContent = function() {
-    $("#btnHome, #btnProjects, #btnAbout, #btnServices, #btnContacts, #btnTestimonials").click(function(e) {
+    $("#btnHome, #btnProjects, #btnAbout, #btnServices, #btnContacts, #btnTestimonials, #btnCrew").click(function(e) {
 	  e.preventDefault();
 	  $(this)
         .parent().siblings().removeClass("colorlib-active");
